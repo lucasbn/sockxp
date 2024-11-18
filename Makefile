@@ -1,5 +1,6 @@
 CC_BPF ?= clang
-CFLAGS_BPF ?= -Wall -Wextra -Werror -ggdb
+LIBBPF_HEADERS := libbpf/src/install-dir/usr/include
+CFLAGS_BPF ?= -I$(LIBBPF_HEADERS) -I/usr/include/aarch64-linux-gnu -Wall -Wextra -Werror -ggdb
 
 %.bpf.o: %.bpf.c
 	$(CC_BPF) $(CFLAGS_BPF) -O2 -target bpf -c -o $@ $<
